@@ -6,6 +6,6 @@ export default () => (
     padding: '0 1rem',
     borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
   }}>
-    <h2>Penn Course Cart</h2>
+    <h1 class="display-1 text-center">Penn Course Cart</h1>
   </div>
 )
