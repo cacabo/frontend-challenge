@@ -11,30 +11,19 @@ class Cart extends Component {
   }
 
   render() {
-    if (this.props.posts.length === 0) {
-      return (
-        <div class="p-3 text-center border border-dark rounded">
-
-          <h2>Course Cart</h2>
-          <h3>You cart is currently empty!</h3>
-          {this.props.showError ? <h4 class="text-danger"> You can only add 7 courses!</h4> : <p></p>}
-          {this.props.posts !== undefined && this.props.posts.length > 0 ? <Button variant="outline-primary" onClick={this.toggleCheckout}>Checkout</Button> : <p></p>}
-
-        </div>
-      )
-    } else {
-      return (
-        <div class="p-3 text-center border border-info rounded">
-
-          <h2>Course Cart</h2>
-          {this.props.posts.map((item) => <h3 class="text-center">{item}</h3>)}
-          {this.props.showError ? <h4 class="text-danger"> You can only add 7 courses!</h4> : <p></p>}
-          <Button variant="outline-primary" onClick={this.toggleCheckout}>Checkout</Button>
-
-        </div>
-      )
-    }
-
+    // Also this probably shouldn't be called "posts"
+    const { posts, showError } = this.props
+    const arePosts = !posts || posts.length > 0
+    
+    return (
+      <div class={`p-3 text-center border ${arePosts ? 'border-info' : 'border-dark'} rounded`}>
+        <h2>Course Cart</h2>
+        {arePosts && (<h3>You cart is currently empty!</h3>)}
+        {showError && (<h4 class="text-danger"> You can only add 7 courses!</h4>)}
+        {posts.map((item) => <h3 class="text-center">{item}</h3>)}
+        {arePosts && (<Button variant="outline-primary" onClick={this.toggleCheckout}>Checkout</Button>)}
+      </div>
+    )
   }
 }
 
